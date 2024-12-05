@@ -5,13 +5,15 @@ import sys
 import pickle
 from scipy import stats
 
-sys.path.append('/mnt/data1/yasu/knowledge_injection/code')
+#sys.path.append('/mnt/data1/yasu/knowledge_injection/code')
 from transformers import set_seed
 from src import metrics
 from src import run_edit
 from src import data_utils
 
 ROOT_DIR = '/mnt/data1/yasu/knowledge_injection/code'
+
+ROOT_DIR = '.'
 
 def main(epoch):
 
@@ -72,7 +74,7 @@ def main(epoch):
     for k, v in train_params.items():
         print('{:>24}: {}'.format(k, v))
 
-    device = torch.device("cuda:1")
+    device = torch.device("cuda:0")
     set_seed(train_params['SEED'])
 
     results_dict = run_edit.run_experiment(ki_method,
